@@ -11,13 +11,13 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-interface SidebarNavItem {
+export interface SidebarNavItem {
   title: string
   href: string
   icon: React.ComponentType<{ className?: string }>
 }
 
-const sidebarItems: SidebarNavItem[] = [
+export const sidebarItems: SidebarNavItem[] = [
   { title: "대시보드", href: "/dashboard", icon: LayoutDashboardIcon },
   { title: "분석", href: "/dashboard/analytics", icon: BarChart2Icon },
   { title: "사용자", href: "/dashboard/users", icon: UsersIcon },
@@ -47,6 +47,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 isActive

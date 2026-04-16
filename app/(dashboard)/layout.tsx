@@ -1,8 +1,7 @@
 import { Sidebar } from "@/components/layout/sidebar"
+import { MobileSidebar } from "@/components/layout/mobile-sidebar"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { MenuIcon } from "lucide-react"
 
 // 대시보드 레이아웃 (사이드바 + 메인 콘텐츠)
 export default function DashboardLayout({
@@ -23,9 +22,7 @@ export default function DashboardLayout({
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Button variant="ghost" size="icon" aria-label="메뉴">
-              <MenuIcon className="size-5" />
-            </Button>
+            <MobileSidebar />
           </div>
         </header>
 
