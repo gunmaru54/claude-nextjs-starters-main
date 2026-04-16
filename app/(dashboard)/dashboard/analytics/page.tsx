@@ -18,6 +18,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { StatsCardGrid } from "@/components/dashboard/stats-card-grid"
 import type { DashboardStats } from "@/types"
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 const analyticsStats: DashboardStats[] = [
   { label: "총 페이지뷰", value: "128,450", change: "+12.3%", trend: "up" },
   { label: "순 방문자 수", value: "34,210", change: "+8.1%", trend: "up" },
-  { label: "이탈률", value: "42.5%", change: "-3.2%", trend: "up" },
+  { label: "이탈률", value: "42.5%", change: "-3.2%", trend: "down" },
   { label: "평균 세션 시간", value: "3분 24초", change: "+0.8%", trend: "up" },
 ]
 
@@ -65,37 +66,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* 핵심 지표 카드 */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-        {analyticsStats.map((stat, index) => {
-          const Icon = statsIcons[index]
-          return (
-            <Card key={stat.label}>
-              <CardHeader className="border-b">
-                <div className="flex items-center justify-between">
-                  <CardDescription>{stat.label}</CardDescription>
-                  <div className="flex size-8 items-center justify-center rounded-md bg-muted">
-                    <Icon className="size-4 text-muted-foreground" />
-                  </div>
-                </div>
-                <CardTitle className="text-2xl tabular-nums">{stat.value}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-3">
-                <div className="flex items-center gap-1 text-xs">
-                  {stat.trend === "up" ? (
-                    <ArrowUpIcon className="size-3 text-emerald-500" />
-                  ) : (
-                    <ArrowDownIcon className="size-3 text-red-500" />
-                  )}
-                  <span className={stat.trend === "up" ? "text-emerald-500" : "text-red-500"}>
-                    {stat.change}
-                  </span>
-                  <span className="text-muted-foreground">지난달 대비</span>
-                </div>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
+      <StatsCardGrid stats={analyticsStats} icons={statsIcons} />
 
       {/* 하단 섹션: 채널별 트래픽 + 기기별 비율 */}
       <div className="grid gap-4 md:grid-cols-2">

@@ -4,13 +4,12 @@ import {
   UsersIcon,
   DollarSignIcon,
   ActivityIcon,
-  ArrowUpIcon,
-  ArrowDownIcon,
 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Skeleton } from "@/components/ui/skeleton"
+import { StatsCardGrid } from "@/components/dashboard/stats-card-grid"
 import type { DashboardStats } from "@/types"
 
 export const metadata: Metadata = {
@@ -39,37 +38,7 @@ export default function DashboardPage() {
       </div>
 
       {/* 통계 카드 그리드 */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-        {stats.map((stat, index) => {
-          const Icon = statsIcons[index]
-          return (
-            <Card key={stat.label}>
-              <CardHeader className="border-b">
-                <div className="flex items-center justify-between">
-                  <CardDescription>{stat.label}</CardDescription>
-                  <div className="flex size-8 items-center justify-center rounded-md bg-muted">
-                    <Icon className="size-4 text-muted-foreground" />
-                  </div>
-                </div>
-                <CardTitle className="text-2xl tabular-nums">{stat.value}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-3">
-                <div className="flex items-center gap-1 text-xs">
-                  {stat.trend === "up" ? (
-                    <ArrowUpIcon className="size-3 text-emerald-500" />
-                  ) : (
-                    <ArrowDownIcon className="size-3 text-red-500" />
-                  )}
-                  <span className={stat.trend === "up" ? "text-emerald-500" : "text-red-500"}>
-                    {stat.change}
-                  </span>
-                  <span className="text-muted-foreground">지난달 대비</span>
-                </div>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
+      <StatsCardGrid stats={stats} icons={statsIcons} />
 
       {/* 탭 콘텐츠 */}
       <Tabs defaultValue="overview">
