@@ -43,3 +43,4 @@ next-env.d.ts
 # 로컬 개발 환경 설정
 .claude/
 .mcp.json
+.playwright-mcp/
