@@ -15,7 +15,7 @@ export default function LoginPage() {
     <Card>
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">로그인</CardTitle>
-        <CardDescription>계정에 로그인하여 서비스를 이용하세요</CardDescription>
+        <CardDescription>계정에 로그인하여 서비스를 이용하세요.</CardDescription>
       </CardHeader>
 
       <CardContent className="flex flex-col gap-4">
